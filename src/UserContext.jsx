@@ -4,6 +4,7 @@ export const UserContext = createContext()
 
 export const UserStorage = ({ children }) => {
   const [dados, setDados] = useState([])
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
     const fetchCategorias = async () => {
@@ -11,7 +12,7 @@ export const UserStorage = ({ children }) => {
         const [response1, response2, response3, response4] = await Promise.all([
           fetch("https://api.escuelajs.co/api/v1/categories/1"),
           fetch("https://api.escuelajs.co/api/v1/categories/2"),
-          fetch("https://api.escuelajs.co/api/v1/categories/3"),
+          fetch("https://api.escuelajs.co/api/v1/categories/5"),
           fetch("https://api.escuelajs.co/api/v1/categories/4"),
         ])
 
@@ -37,8 +38,25 @@ export const UserStorage = ({ children }) => {
     fetchCategorias()
   }, [])
 
+  useEffect(() => {
+    const fetchProduto = async () => {
+      try {
+        const response = await fetch(
+          "https://api.escuelajs.co/api/v1/products?offset=0&limit=15"
+        )
+        const json = await response.json()
+        setProducts(json)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchProduto()
+  }, [])
+
   return (
-    <UserContext.Provider value={{ dados }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ dados, products }}>
+      {children}
+    </UserContext.Provider>
   )
 }
 

@@ -9,6 +9,7 @@ export default {
       },
       strokeWidth: {
         4: "4px",
+        3.1: "3.1px",
       },
     },
   },
