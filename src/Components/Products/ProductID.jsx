@@ -53,8 +53,8 @@ const ProductID = () => {
             <h1 className="text-2xl text-zinc-50 font-semibold mb-7">
               ${produto?.price}
             </h1>
-            <button className="bg-indigo-600 text-sm font-semibold py-3 px-3 rounded-lg hover:bg-indigo-900 ease-in duration-100 flex gap-2 items-center">
-              <ShoppingCart className="text-center inline-block w-4 h-4 stroke-3.1" />
+            <button className="bg-indigo-600 text-lg font-semibold py-3 px-3 w-[29.875rem] rounded-lg hover:bg-indigo-900 ease-in duration-100 flex gap-2 justify-center items-center">
+              <ShoppingCart className="text-center inline-block w-5 h-5 stroke-3.1" />
               Add to cart
             </button>
           </div>
