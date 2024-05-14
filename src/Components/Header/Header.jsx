@@ -9,7 +9,7 @@ const Header = () => {
       <NavLink to="/">
         <h1 className="font-extrabold">Shopi</h1>
       </NavLink>
-      <div className="flex">
+      <nav className="flex">
         <ul className="flex justify-center items-center text-sm  tracking-wide">
           <NavLink to="/">
             <HeaderLi name="Home" />
@@ -21,7 +21,7 @@ const Header = () => {
             <HeaderLi name="About" />
           </NavLink>
         </ul>
-      </div>
+      </nav>
       <div className="flex gap-8">
         <ul className="flex justify-center items-center gap-8 text-sm">
           <li>My Orders</li>

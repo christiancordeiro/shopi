@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 import Input from "./Products/Input"
 import { ShoppingCart } from "lucide-react"
 import UserContext from "../UserContext"
+import { Link } from "react-router-dom"
 
 function Products() {
   const [valueInput, setValueInput] = useState("")
@@ -10,10 +11,10 @@ function Products() {
 
   const filtredItems =
     valueInput.length > 0
-      ? products.filter((produto) => produto.title.includes(valueInput))
+      ? products.filter((produto) =>
+          produto.title.toLowerCase().includes(valueInput.toLowerCase())
+        )
       : []
-
-  console.log(products)
 
   return (
     <section className="my-10 mx-28">
@@ -29,17 +30,23 @@ function Products() {
             ? filtredItems.map((produto) => (
                 <li
                   key={produto.id}
-                  className="bg-transparent border border-zinc-700 rounded-lg px-8 py-6 flex flex-col justify-evenly"
+                  className="bg-transparent border border-zinc-700 rounded-lg px-6 py-6 flex flex-col justify-evenly"
                 >
                   <div>
-                    <img
-                      src={produto.images[0].replace(/^\[|"|"\]$/g, "")}
-                      alt=""
-                      className="rounded-lg"
-                    />
+                    <Link to={`/product/${produto.id}`}>
+                      <img
+                        src={produto.images[0].replace(/^\[|"|"\]$/g, "")}
+                        alt=""
+                        className="rounded-lg hover:scale-105 ease-in duration-300"
+                      />
+                    </Link>
                   </div>
                   <div className="flex flex-col gap-1 mt-5">
-                    <h3 className="font-semibold">{produto?.title}</h3>
+                    <h3 className="font-semibold">
+                      <Link to={`/product/${produto.id}`}>
+                        {produto?.title}
+                      </Link>
+                    </h3>
                     <span className="text-zinc-400 text-sm">
                       Category: {produto?.category?.name}
                     </span>
@@ -55,30 +62,34 @@ function Products() {
                           ${produto?.price}
                         </span>
                       </h2>
-                      <div className="relative">
-                        <ShoppingCart className="absolute top-3 w-5 h-5 ml-5 stroke-3.1" />
-                        <button className="bg-indigo-600 text-sm font-semibold py-3 pr-4 pl-10 ml-2 rounded-lg hover:bg-indigo-900 ease-in duration-100">
-                          Add to cart
-                        </button>
-                      </div>
+                      <button className="bg-indigo-600 text-sm font-semibold py-3 px-3 rounded-lg hover:bg-indigo-900 ease-in duration-100 flex gap-2 items-center">
+                        <ShoppingCart className="text-center inline-block w-4 h-4 stroke-3.1" />
+                        Add to cart
+                      </button>
                     </div>
                   </div>
                 </li>
               ))
             : products.map((produto) => (
-                <div
+                <li
                   key={produto.id}
-                  className="bg-transparent border border-zinc-700 rounded-lg px-8 py-6 flex flex-col justify-evenly"
+                  className="bg-transparent border border-zinc-700 rounded-lg px-6 py-6 flex flex-col justify-evenly"
                 >
                   <div>
-                    <img
-                      src={produto.images[0].replace(/^\[|"|"\]$/g, "")}
-                      alt=""
-                      className="rounded-lg"
-                    />
+                    <Link to={`/product/${produto.id}`}>
+                      <img
+                        src={produto.images[0].replace(/^\[|"|"\]$/g, "")}
+                        alt=""
+                        className="rounded-lg hover:scale-105 ease-in duration-300"
+                      />
+                    </Link>
                   </div>
                   <div className="flex flex-col gap-1 mt-5">
-                    <h3 className="font-semibold">{produto?.title}</h3>
+                    <h3 className="font-semibold">
+                      <Link to={`/product/${produto.id}`}>
+                        {produto?.title}
+                      </Link>
+                    </h3>
                     <span className="text-zinc-400 text-sm">
                       Category: {produto?.category?.name}
                     </span>
@@ -94,15 +105,13 @@ function Products() {
                           ${produto?.price}
                         </span>
                       </h2>
-                      <div className="relative">
-                        <ShoppingCart className="absolute top-3 w-5 h-5 ml-5 stroke-3.1" />
-                        <button className="bg-indigo-600 text-sm font-semibold py-3 pr-4 pl-10 ml-2 rounded-lg hover:bg-indigo-900 ease-in duration-100">
-                          Add to cart
-                        </button>
-                      </div>
+                      <button className="bg-indigo-600 text-sm font-semibold py-3 px-3 rounded-lg hover:bg-indigo-900 ease-in duration-100 flex gap-2 items-center">
+                        <ShoppingCart className="text-center inline-block w-4 h-4 stroke-3.1" />
+                        Add to cart
+                      </button>
                     </div>
                   </div>
-                </div>
+                </li>
               ))}
         </ul>
         <aside className="ml-14 bg-transparent border border-zinc-700 rounded-lg px-8 py-8 h-96">
