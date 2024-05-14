@@ -3,7 +3,7 @@ import { ShoppingCart } from "lucide-react"
 const ProductItem = ({ produto }) => (
   <div
     key={produto.id}
-    className="grid grid-cols-2 gap-8 justify-center items-center"
+    className="grid grid-cols-2 gap-8 justify-center items-center slidein"
   >
     <div className="grid grid-cols-2 gap-4">
       <div className="flex flex-col gap-4">
