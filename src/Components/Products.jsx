@@ -16,6 +16,7 @@ function Products() {
         )
       : []
 
+
   return (
     <section className="my-10 mx-28">
       <div className="flex items-center ">

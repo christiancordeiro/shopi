@@ -10,7 +10,7 @@ export const UserStorage = ({ children }) => {
     const fetchCategorias = async () => {
       try {
         const response = await fetch(
-          "https://my-json-server.typicode.com/christiancordeiro/fakeapi-store/categories"
+          "https://json-server-api-store.vercel.app/categories"
         )
         const json = await response.json()
         setDados(json)
@@ -21,14 +21,16 @@ export const UserStorage = ({ children }) => {
     fetchCategorias()
   }, [])
 
+  // https://my-json-server.typicode.com/christiancordeiro/fakeapi-store/products
+
   useEffect(() => {
     const fetchProduto = async () => {
       try {
         const response = await fetch(
-          "https://my-json-server.typicode.com/christiancordeiro/fakeapi-store/products"
+          "https://json-server-api-store.vercel.app/products"
         )
         const json = await response.json()
-        // console.log(json)
+        console.log(json)
         setProducts(json)
       } catch (error) {
         console.log(error)
