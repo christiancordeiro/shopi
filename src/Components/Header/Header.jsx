@@ -23,13 +23,12 @@ const Header = () => {
         </ul>
       </nav>
       <div className="flex gap-8">
-        <ul className="flex justify-center items-center gap-8 text-sm">
-          <li>My Orders</li>
-          <li>My Account</li>
-        </ul>
-        <i>
-          <ShoppingCart className="w-5" />
-        </i>
+        <nav className="flex justify-center items-center gap-8 text-sm">
+          <NavLink to="/orders">My Orders</NavLink>
+          <i>
+            <ShoppingCart className="w-5" />
+          </i>
+        </nav>
       </div>
     </header>
   )

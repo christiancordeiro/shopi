@@ -3,6 +3,7 @@ import Header from "./Components/Header/Header"
 import Home from "./Components/Home"
 import Products from "./Components/Products"
 import ProductID from "./Components/Products/ProductID"
+import Orders from "./Components/Orders/Orders"
 import { UserStorage } from "./UserContext"
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/products/*" element={<Products />} />
             <Route path="/product/:id" element={<ProductID />} />
+            <Route path="/orders" element={<Orders />} />
           </Routes>
         </UserStorage>
       </BrowserRouter>

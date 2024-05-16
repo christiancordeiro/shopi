@@ -5,6 +5,8 @@ export const UserContext = createContext()
 export const UserStorage = ({ children }) => {
   const [dados, setDados] = useState([])
   const [products, setProducts] = useState([])
+  const [cartItems, setCartItems] = useState([])
+
 
   useEffect(() => {
     const fetchCategorias = async () => {
@@ -21,8 +23,6 @@ export const UserStorage = ({ children }) => {
     fetchCategorias()
   }, [])
 
-  // https://my-json-server.typicode.com/christiancordeiro/fakeapi-store/products
-
   useEffect(() => {
     const fetchProduto = async () => {
       try {
@@ -30,7 +30,6 @@ export const UserStorage = ({ children }) => {
           "https://json-server-api-store.vercel.app/products"
         )
         const json = await response.json()
-        console.log(json)
         setProducts(json)
       } catch (error) {
         console.log(error)
@@ -40,7 +39,14 @@ export const UserStorage = ({ children }) => {
   }, [])
 
   return (
-    <UserContext.Provider value={{ dados, products }}>
+    <UserContext.Provider
+      value={{
+        dados,
+        products,
+        cartItems,
+        setCartItems,
+      }}
+    >
       {children}
     </UserContext.Provider>
   )

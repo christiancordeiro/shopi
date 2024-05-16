@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 function Products() {
   const [valueInput, setValueInput] = useState("")
 
-  const { products } = useContext(UserContext)
+  const { products, cartItems, setCartItems } = useContext(UserContext)
 
   const filtredItems =
     valueInput.length > 0
@@ -16,6 +16,11 @@ function Products() {
         )
       : []
 
+  function handleCartClick(produto) {
+    setCartItems((prevItems) => [...prevItems, produto])
+  }
+
+  console.log(cartItems)
 
   return (
     <section className="my-10 mx-28">
@@ -33,15 +38,13 @@ function Products() {
                   key={produto.id}
                   className="bg-transparent border border-zinc-700 rounded-lg px-6 py-6 flex flex-col justify-evenly"
                 >
-                  <div>
-                    <Link to={`/product/${produto.id}`}>
-                      <img
-                        src={produto.images[0].replace(/^\[|"|"\]$/g, "")}
-                        alt=""
-                        className="rounded-lg hover:scale-105 ease-in duration-300"
-                      />
-                    </Link>
-                  </div>
+                  <Link to={`/product/${produto.id}`}>
+                    <img
+                      src={produto.images[0].replace(/^\[|"|"\]$/g, "")}
+                      alt=""
+                      className="rounded-lg hover:scale-105 ease-in duration-300"
+                    />
+                  </Link>
                   <div className="flex flex-col gap-1 mt-5">
                     <h3 className="font-semibold">
                       <Link to={`/product/${produto.id}`}>
@@ -76,15 +79,13 @@ function Products() {
                   key={produto.id}
                   className="bg-transparent border border-zinc-700 rounded-lg px-6 py-6 flex flex-col justify-evenly"
                 >
-                  <div>
-                    <Link to={`/product/${produto.id}`}>
-                      <img
-                        src={produto.images[0].replace(/^\[|"|"\]$/g, "")}
-                        alt=""
-                        className="rounded-lg hover:scale-105 ease-in duration-300"
-                      />
-                    </Link>
-                  </div>
+                  <Link to={`/product/${produto.id}`}>
+                    <img
+                      src={produto.images[0].replace(/^\[|"|"\]$/g, "")}
+                      alt=""
+                      className="rounded-lg hover:scale-105 ease-in duration-300"
+                    />
+                  </Link>
                   <div className="flex flex-col gap-1 mt-5">
                     <h3 className="font-semibold">
                       <Link to={`/product/${produto.id}`}>
@@ -106,7 +107,10 @@ function Products() {
                           ${produto?.price}
                         </span>
                       </h2>
-                      <button className="bg-indigo-600 text-sm font-semibold py-3 px-3 rounded-lg hover:bg-indigo-900 ease-in duration-100 flex gap-2 items-center">
+                      <button
+                        onClick={() => handleCartClick(produto)}
+                        className="bg-indigo-600 text-sm font-semibold py-3 px-3 rounded-lg hover:bg-indigo-900 ease-in duration-100 flex gap-2 items-center"
+                      >
                         <ShoppingCart className="text-center inline-block w-4 h-4 stroke-3.1" />
                         Add to cart
                       </button>
