@@ -1,31 +1,34 @@
 import { useContext, useEffect, useState } from "react"
 import Button from "../Button"
 import UserContext from "../../UserContext"
+import { useDispatch, useSelector } from "react-redux"
+import {
+  removeProductsFromCart,
+  increaseProductQuantity,
+  decreaseProductQuantity,
+} from "../Redux/cart/actions"
 
-const OrdemItems = ({ index, title, price, img, updateTotalPrice }) => {
-  const [amount, setAmount] = useState(1)
-  const [disabled, setDisabled] = useState(true)
+const OrdemItems = ({ id, title, price, img }) => {
+  const dispatch = useDispatch()
+  const products = useSelector((state) => state.cartReducer.products)
+  const product = products.find((product) => product.id === id)
+  const [disabled, setDisabled] = useState(product.quantity <= 1)
 
-  const { cartItems, setCartItems } = useContext(UserContext)
+  useEffect(() => {
+    setDisabled(product.quantity <= 1)
+  }, [product.quantity])
 
   function handleAdd() {
-    setAmount(amount + 1)
+    dispatch(increaseProductQuantity(id))
     setDisabled(false)
-    updateTotalPrice(price)
   }
 
   function handleLess() {
-    setAmount((prevAmount) => {
-      const newAmount = prevAmount - 1
-      setDisabled(newAmount === 1)
-      return newAmount
-    })
-    updateTotalPrice(-price)
+    dispatch(decreaseProductQuantity(id))
   }
 
   function handleRemove() {
-    const updateCartItems = cartItems.filter((item, idx) => idx !== index)
-    setCartItems(updateCartItems)
+    dispatch(removeProductsFromCart(id))
   }
 
   return (
@@ -38,9 +41,9 @@ const OrdemItems = ({ index, title, price, img, updateTotalPrice }) => {
             <h3>${price}</h3>
           </div>
           <div className="col-end-7 flex justify-center items-center gap-2">
-            <Button text="Remove" onClick={() => handleRemove(index)} />
+            <Button text="Remove" onClick={handleRemove} />
             <Button text="-" onClick={handleLess} disabled={disabled} />
-            <p>{amount}</p>
+            <p>{product.quantity}</p>
             <Button text="+" onClick={handleAdd} />
           </div>
         </div>

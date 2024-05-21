@@ -3,11 +3,14 @@ import Input from "./Products/Input"
 import { ShoppingCart } from "lucide-react"
 import UserContext from "../UserContext"
 import { Link } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { addProductsToCart } from "./Redux/cart/actions"
 
 function Products() {
+  const dispatch = useDispatch()
   const [valueInput, setValueInput] = useState("")
 
-  const { products, cartItems, setCartItems } = useContext(UserContext)
+  const { products } = useContext(UserContext)
 
   const filtredItems =
     valueInput.length > 0
@@ -17,10 +20,8 @@ function Products() {
       : []
 
   function handleCartClick(produto) {
-    setCartItems((prevItems) => [...prevItems, produto])
+    dispatch(addProductsToCart(produto))
   }
-
-  console.log(cartItems)
 
   return (
     <section className="my-10 mx-28">

@@ -5,6 +5,7 @@ import Products from "./Components/Products"
 import ProductID from "./Components/Products/ProductID"
 import Orders from "./Components/Orders/Orders"
 import { UserStorage } from "./UserContext"
+import About from "./Components/About"
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products/*" element={<Products />} />
+            <Route path="/about" element={<About />} />
             <Route path="/product/:id" element={<ProductID />} />
             <Route path="/orders" element={<Orders />} />
           </Routes>

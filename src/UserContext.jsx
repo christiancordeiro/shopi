@@ -5,8 +5,6 @@ export const UserContext = createContext()
 export const UserStorage = ({ children }) => {
   const [dados, setDados] = useState([])
   const [products, setProducts] = useState([])
-  const [cartItems, setCartItems] = useState([])
-
 
   useEffect(() => {
     const fetchCategorias = async () => {
@@ -43,8 +41,6 @@ export const UserStorage = ({ children }) => {
       value={{
         dados,
         products,
-        cartItems,
-        setCartItems,
       }}
     >
       {children}
