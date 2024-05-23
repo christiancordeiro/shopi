@@ -13,13 +13,15 @@ const Header = () => {
         <h1 className="font-extrabold">Shopi</h1>
       </NavLink>
       <nav className="flex">
-        <ul className="flex justify-center items-center text-sm  tracking-wide">
+        <ul className="flex justify-center items-center text-sm tracking-wide">
           <NavLink to="/">
             <HeaderLi name="Home" />
           </NavLink>
+
           <NavLink to="/products">
             <HeaderLi name="Products" />
           </NavLink>
+
           <NavLink to="/about">
             <HeaderLi name="About" />
           </NavLink>

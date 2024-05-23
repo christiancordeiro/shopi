@@ -2,22 +2,34 @@ import { useContext, useState } from "react"
 import Input from "./Products/Input"
 import { ShoppingCart } from "lucide-react"
 import UserContext from "../UserContext"
-import { Link } from "react-router-dom"
+import { Link, NavLink, useLocation } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { addProductsToCart } from "./Redux/cart/actions"
+import ProductLink from "./Products/ProductLink"
 
 function Products() {
   const dispatch = useDispatch()
   const [valueInput, setValueInput] = useState("")
 
-  const { products } = useContext(UserContext)
+  const { products, dados } = useContext(UserContext)
 
-  const filtredItems =
+  const filteredItemsInput =
     valueInput.length > 0
       ? products.filter((produto) =>
           produto.title.toLowerCase().includes(valueInput.toLowerCase())
         )
       : []
+
+  const location = useLocation()
+
+  const categoryName = location.pathname.split("/")[2]
+
+  const filteredItemsCategory = categoryName
+    ? products.filter(
+        (product) =>
+          product.category.name.toLowerCase() === categoryName.toLowerCase()
+      )
+    : products
 
   function handleCartClick(produto) {
     dispatch(addProductsToCart(produto))
@@ -34,7 +46,7 @@ function Products() {
       <div className="gridCustom slidein">
         <ul className="grid grid-cols-3 gap-4">
           {valueInput.length > 0
-            ? filtredItems.map((produto) => (
+            ? filteredItemsInput.map((produto) => (
                 <li
                   key={produto.id}
                   className="bg-transparent border border-zinc-700 rounded-lg px-6 py-6 flex flex-col justify-evenly"
@@ -75,7 +87,7 @@ function Products() {
                   </div>
                 </li>
               ))
-            : products.map((produto) => (
+            : filteredItemsCategory.map((produto) => (
                 <li
                   key={produto.id}
                   className="bg-transparent border border-zinc-700 rounded-lg px-6 py-6 flex flex-col justify-evenly"
@@ -120,15 +132,17 @@ function Products() {
                 </li>
               ))}
         </ul>
-        <aside className="ml-14 bg-transparent border border-zinc-700 rounded-lg px-8 py-8 h-96">
-          <h2 className="font-semibold text-zinc-50">Categories:</h2>
-          <ul className="flex flex-col gap-6 mt-4 text-sm text-zinc-200">
-            <li className="active">All</li>
-            <li>Clothes</li>
-            <li>Eletronics</li>
-            <li>Furniture</li>
-            <li>Shoes</li>
-            <li>Miscellaneous</li>
+        <aside className="ml-14 bg-transparent border border-zinc-700 rounded-lg max-h-[20rem]">
+          <h2 className="font-semibold text-zinc-50 px-8 pt-8">Categories:</h2>
+          <ul className="flex flex-col mt-4 text-sm text-zinc-200">
+            <NavLink to="/products" end>
+              <ProductLink name="All" />
+            </NavLink>
+            {dados.map((product) => (
+              <NavLink key={product.id} to={product.name}>
+                <ProductLink name={product.name} />
+              </NavLink>
+            ))}
           </ul>
         </aside>
       </div>
