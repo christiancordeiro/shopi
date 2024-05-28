@@ -9,19 +9,19 @@ const ProductItem = ({ produto, onClick }) => (
       <div className="flex flex-col gap-4">
         <img
           className="w-80 h-64 object-cover rounded-md"
-          src={produto?.images[1].replace(/^\[|"|"\]$/g, "")}
+          src={produto?.images[1]}
           alt="Product image 1"
         />
         <img
           className="w-80 h-64 object-cover rounded-md"
-          src={produto?.images[2].replace(/^\[|"|"\]$/g, "")}
+          src={produto?.images[2]}
           alt="Product image 2"
         />
       </div>
       <div>
         <img
           className="w-[22.625rem] h-[33rem] object-cover rounded-md"
-          src={produto?.images[0].replace(/^\[|"|"\]$/g, "")}
+          src={produto?.images[0]}
           alt="Product image 3"
         />
       </div>

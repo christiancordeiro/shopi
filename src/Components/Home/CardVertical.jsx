@@ -4,7 +4,7 @@ const CardVertical = ({ img, name }) => {
       <img
         src={img}
         alt="Image category"
-        className="w-[25rem] h-[29rem] object-cover rounded-xl opacity-70 "
+        className="xl:w-[25rem] h-[29rem] object-cover rounded-xl opacity-70 "
       />
       <div className="flex flex-col gap-3 absolute bottom-9 left-9 ">
         <h2 className="text-base ">{name}</h2>

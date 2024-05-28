@@ -1,6 +1,5 @@
 import { ShoppingCart } from "lucide-react"
-import HeaderLi from "./HeaderLi"
-import { NavLink } from "react-router-dom"
+import { NavLink, Link } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { selectProductsCount } from "../Redux/cart/cart.selector"
 
@@ -8,40 +7,58 @@ const Header = () => {
   const productCount = useSelector(selectProductsCount)
 
   return (
-    <header className="flex justify-between items-center h-16 px-24 font-Helvetica flex-wrap border-b-2 border-zinc-900">
-      <NavLink to="/">
-        <h1 className="font-extrabold">Shopi</h1>
-      </NavLink>
-      <nav className="flex">
-        <ul className="flex justify-center items-center text-sm tracking-wide">
-          <NavLink to="/">
-            <HeaderLi name="Home" />
-          </NavLink>
+    <header className="border-b-2 border-zinc-900 w-full px-8 py-6 xl:px-16 ">
+      <nav className="flex justify-between items-center font-Helvetica">
+        <Link to="/" className="font-extrabold">
+          Shopi
+        </Link>
 
-          <NavLink to="/products">
-            <HeaderLi name="Products" />
-          </NavLink>
+        <ul className="flex justify-center items-center text-sm text">
+          <li>
+            <NavLink
+              to="/"
+              className="py-7 px-2 xl:px-5 hover:bg-zinc-900 duration-100"
+            >
+              Home
+            </NavLink>
+          </li>
 
-          <NavLink to="/about">
-            <HeaderLi name="About" />
-          </NavLink>
+          <li>
+            <NavLink
+              to="/products"
+              className="py-7 px-2 xl:px-5 hover:bg-zinc-900 duration-100"
+            >
+              Products
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink
+              to="/about"
+              className="py-7 px-2 xl:px-5 hover:bg-zinc-900 duration-100"
+            >
+              About
+            </NavLink>
+          </li>
         </ul>
-      </nav>
 
-      <NavLink
-        to="/orders"
-        className=" flex justify-center items-center gap-4 text-sm py-[1.282rem] px-5"
-      >
-        My Orders
-        <div className="flex flex-row relative">
-          <i>
-            <ShoppingCart className="w-[1.2rem]" />
-          </i>
-          <i className=" absolute right-[-8px] top-[-8px] text-xs">
-            {productCount}
-          </i>
+        <div className="flex items-center">
+          <Link
+            to="/orders"
+            className=" flex justify-center items-center text-sm xl:gap-3"
+          >
+            <span className="hidden md:block">Orders</span>
+            <div className="flex xl:relative">
+              <i>
+                <ShoppingCart className="w-[1.2rem]" />
+              </i>
+              <span className="xl:absolute xl:right-[-8px] xl:top-[-8px] text-xs">
+                {productCount}
+              </span>
+            </div>
+          </Link>
         </div>
-      </NavLink>
+      </nav>
     </header>
   )
 }
