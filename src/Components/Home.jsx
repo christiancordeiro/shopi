@@ -36,32 +36,22 @@ const Home = () => {
   }
 
   return (
-    <main className="ml-5 my-10 font-Inter xl:mx-28 md:mx-12 overflow-x-hidden">
+    <main className="ml-8 my-10 font-Inter xl:mx-28 md:mx-12 overflow-x-hidden">
       <section className="grid grid-cols-2 justify-center items-center slidein gap-5 md:grid-cols-1">
         {isMobile ? (
-          <div className="flex justify-center items-center w-screen">
+          <div className="w-screen pr-12">
             <Swiper spaceBetween={20} slidesPerView={2}>
-              <SwiperSlide>
-                <Link to="/products/clothes">
-                  <CardHorizontal img={dados[2]?.image} name={dados[2]?.name} />
-                </Link>
-              </SwiperSlide>
-              <SwiperSlide>
-                <Link to="/products/shoes">
-                  <CardVertical img={dados[0]?.image} name={dados[0]?.name} />
-                </Link>
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <Link to="/products/electronics">
-                  <CardVertical img={dados[3]?.image} name={dados[3]?.name} />
-                </Link>
-              </SwiperSlide>
-              <SwiperSlide>
-                <Link to="/products/miscellaneous">
-                  <CardHorizontal img={dados[1]?.image} name={dados[1]?.name} />
-                </Link>
-              </SwiperSlide>
+              {dados.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <Link to={`/products/${item.name}`}>
+                    {index % 2 === 0 ? (
+                      <CardHorizontal img={item.image} name={item.name} />
+                    ) : (
+                      <CardVertical img={item.image} name={item.name} />
+                    )}
+                  </Link>
+                </SwiperSlide>
+              ))}
             </Swiper>
           </div>
         ) : (
@@ -90,32 +80,20 @@ const Home = () => {
           BROWSE THROUGH PARTNER STORES
         </h1>
         {isMobile ? (
-          <div className="w-screen">
-            <Swiper spaceBetween={60} slidesPerView={4}>
-              <SwiperSlide>
-                <Brand />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Brand />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Brand />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Brand />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Brand />
-              </SwiperSlide>
+          <div className="w-screen pr-12">
+            <Swiper spaceBetween={0} slidesPerView={4}>
+              {Array.from({ length: 6 }).map((_, index) => (
+                <SwiperSlide key={index}>
+                  <Brand />
+                </SwiperSlide>
+              ))}
             </Swiper>
           </div>
         ) : (
           <div className="flex justify-center gap-4 md:gap-12">
-            <Brand />
-            <Brand />
-            <Brand />
-            <Brand />
-            <Brand />
+            {Array.from({ length: 5 }).map((_, index) => (
+              <Brand key={index} />
+            ))}
           </div>
         )}
       </section>
