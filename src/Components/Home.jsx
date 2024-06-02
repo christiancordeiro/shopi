@@ -81,7 +81,7 @@ const Home = () => {
         </h1>
         {isMobile ? (
           <div className="w-screen pr-12">
-            <Swiper spaceBetween={0} slidesPerView={4}>
+            <Swiper spaceBetween={40} slidesPerView={3}>
               {Array.from({ length: 6 }).map((_, index) => (
                 <SwiperSlide key={index}>
                   <Brand />
