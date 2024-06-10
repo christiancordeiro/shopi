@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import UserContext from "../../UserContext"
-import ProductItem from "./ProductItem"
+import ProductDetails from "./ProductDetails"
 import { useDispatch } from "react-redux"
 import { addProductsToCart } from "../Redux/cart/actions"
 
@@ -23,7 +23,7 @@ const ProductID = () => {
   return (
     <section className="my-10 mx-28">
       {filteredItem.map((produto) => (
-        <ProductItem
+        <ProductDetails
           key={produto.id}
           produto={produto}
           onClick={() => handleCartClick(produto)}

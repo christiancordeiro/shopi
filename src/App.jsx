@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Header from "./Components/Header/Header"
 import Home from "./Components/Home"
-import Products from "./Components/Products"
+import Products from "./Components/Products/Products"
 import ProductID from "./Components/Products/ProductID"
 import Orders from "./Components/Orders/Orders"
 import { UserStorage } from "./UserContext"

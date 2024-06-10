@@ -39,7 +39,7 @@ const Home = () => {
     <main className="ml-8 my-10 font-Inter xl:mx-28 md:mx-12 overflow-x-hidden">
       <section className="grid grid-cols-2 justify-center items-center slidein gap-5 md:grid-cols-1">
         {isMobile ? (
-          <div className="w-screen pr-12">
+          <div className="w-screen pr-14">
             <Swiper spaceBetween={20} slidesPerView={2}>
               {dados.map((item, index) => (
                 <SwiperSlide key={index}>

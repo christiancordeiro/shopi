@@ -1,6 +1,6 @@
 import { ShoppingCart } from "lucide-react"
 
-const ProductItem = ({ produto, onClick }) => (
+const ProductDetails = ({ produto, onClick }) => (
   <div
     key={produto.id}
     className="grid grid-cols-2 gap-8 justify-center items-center slidein"
@@ -48,4 +48,4 @@ const ProductItem = ({ produto, onClick }) => (
   </div>
 )
 
-export default ProductItem
+export default ProductDetails
