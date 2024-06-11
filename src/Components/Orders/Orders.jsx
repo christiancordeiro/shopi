@@ -5,7 +5,7 @@ const Orders = () => {
   const { products, totalPrice } = useSelector((state) => state.cartReducer)
 
   return (
-    <section className="my-10 mx-28">
+    <section className="my-10 mx-12 md:my-10 md:mx-28">
       <h1 className="font-semibold text-2xl mb-8">Shopping cart</h1>
       {products.map((item, index) => (
         <ul key={index}>
