@@ -19,7 +19,7 @@ const Home = () => {
   }
 
   return (
-    <main className="ml-8 my-10 font-Inter xl:mx-28 md:mx-12 overflow-x-hidden">
+    <main className="ml-8 sm:mx-8 my-10 font-Inter xl:mx-28 overflow-x-hidden">
       <section className="grid grid-cols-2 justify-center items-center slidein gap-5 md:grid-cols-1">
         {isSmallScreen ? (
           <div className="w-screen pr-14">
@@ -47,7 +47,7 @@ const Home = () => {
                 <CardVertical img={dados[0]?.image} name={dados[0]?.name} />
               </Link>
             </div>
-            <div className="flex justify-center items-center md:gap-5 md:w-full md:ml-0">
+            <div className="flex justify-center items-center gap-5">
               <Link to="/products/electronics">
                 <CardVertical img={dados[3]?.image} name={dados[3]?.name} />
               </Link>
