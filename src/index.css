@@ -7,18 +7,34 @@
 }
 
 .slidein {
-  animation-duration: 0.8s;
+  animation-duration: 0.9s;
   animation-name: slidein;
 }
 
 @keyframes slidein {
   from {
-    margin-top: 100%;
+    margin-top: 200%;
     width: 100%;
   }
 
   to {
     margin-top: 0%;
+    width: 100%;
+  }
+}
+
+.slideout {
+  animation-duration: 0.9s;
+  animation-name: slideout;
+}
+
+@keyframes slideout {
+  from {
+    margin-top: 0%;
+    width: 100%;
+  }
+  to {
+    margin-top: 200%;
     width: 100%;
   }
 }

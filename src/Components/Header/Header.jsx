@@ -11,9 +11,16 @@ const Header = () => {
   const productCount = useSelector(selectProductsCount)
   const isSmallScreen = useMediaQuery("(max-width:640px)")
   const [openMenu, setOpenMenu] = useState(false)
+  const [animateMenu, setAnimateMenu] = useState(false)
 
   const handleClickMenu = () => {
-    setOpenMenu((prevMenu) => !prevMenu)
+    if (openMenu) {
+      setAnimateMenu(false)
+      setTimeout(() => setOpenMenu(false), 800) // Atraso para a animação de saída
+    } else {
+      setOpenMenu(true)
+      setAnimateMenu(true)
+    }
   }
 
   useEffect(() => {
@@ -35,7 +42,11 @@ const Header = () => {
             <ul className="flex justify-between lg:justify-center items-center text-sm text">
               <Menu onClick={handleClickMenu} />
               {openMenu && (
-                <div className="fixed overflow-y-hidden z-20 right-0 top-0 h-screen w-screen bg-zinc-900 slidein">
+                <div
+                  className={`fixed overflow-y-hidden z-20 right-0 top-0 h-screen w-screen bg-zinc-900 ${
+                    animateMenu ? "slidein" : "slideout"
+                  }`}
+                >
                   <div className="flex justify-between p-6">
                     <Link to="/" className="font-extrabold">
                       Shopi
