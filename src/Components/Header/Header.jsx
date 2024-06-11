@@ -1,63 +1,54 @@
-import { ShoppingCart } from "lucide-react"
-import { NavLink, Link } from "react-router-dom"
+import { Menu, X } from "lucide-react"
 import { useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import { selectProductsCount } from "../Redux/cart/cart.selector"
+import { useMediaQuery } from "@mui/material"
+import { useState } from "react"
+import HeaderLi from "./HeaderLi"
+import Cart from "./Cart"
 
 const Header = () => {
   const productCount = useSelector(selectProductsCount)
+  const isSmallScreen = useMediaQuery("(max-width:640px)")
+  const [openMenu, setOpenMenu] = useState(false)
+
+  const handleClickMenu = () => {
+    setOpenMenu((prevMenu) => !prevMenu)
+    console.log(openMenu)
+  }
 
   return (
-    <header className="border-b-2 border-zinc-900 w-full px-8 py-6 xl:px-16 ">
+    <header className="border-b-2 border-zinc-900 w-full relative p-6 sm:py-0 md:px-8  xl:px-16">
       <nav className="flex justify-between items-center font-Helvetica">
         <Link to="/" className="font-extrabold">
           Shopi
         </Link>
-
-        <ul className="flex justify-center items-center text-sm text">
-          <li>
-            <NavLink
-              to="/"
-              className="py-7 px-2 xl:px-5 hover:bg-zinc-900 duration-100"
-            >
-              Home
-            </NavLink>
-          </li>
-
-          <li>
-            <NavLink
-              to="/products"
-              className="py-7 px-2 xl:px-5 hover:bg-zinc-900 duration-100"
-            >
-              Products
-            </NavLink>
-          </li>
-
-          <li>
-            <NavLink
-              to="/about"
-              className="py-7 px-2 xl:px-5 hover:bg-zinc-900 duration-100"
-            >
-              About
-            </NavLink>
-          </li>
-        </ul>
-
-        <div className="flex items-center">
-          <Link
-            to="/orders"
-            className=" flex justify-center items-center text-sm xl:gap-3"
-          >
-            <span className="hidden md:block">Orders</span>
-            <div className="flex xl:relative">
-              <i>
-                <ShoppingCart className="w-[1.2rem]" />
-              </i>
-              <span className="xl:absolute xl:right-[-8px] xl:top-[-8px] text-xs">
-                {productCount}
-              </span>
-            </div>
-          </Link>
-        </div>
+        {isSmallScreen ? (
+          <div className="flex flex-row-reverse sm:flex-row gap-4">
+            <ul className="flex justify-between lg:justify-center items-center text-sm text">
+              <Menu onClick={handleClickMenu} />
+              {openMenu && (
+                <div className="absolute z-20 right-0 top-0 h-screen w-screen bg-zinc-900 slidein">
+                  <div className="flex justify-between p-6">
+                    <Link to="/" className="font-extrabold">
+                      Shopi
+                    </Link>
+                    <X onClick={handleClickMenu} />
+                  </div>
+                  <HeaderLi />
+                </div>
+              )}
+            </ul>
+            <Cart productCount={productCount} />
+          </div>
+        ) : (
+          <>
+            <ul className="flex justify-center items-center text-sm text">
+              <HeaderLi />
+            </ul>
+            <Cart productCount={productCount} />
+          </>
+        )}
       </nav>
     </header>
   )

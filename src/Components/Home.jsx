@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 import UserContext from "../UserContext"
 import Loading from "./Helper/Loading"
 import CardHorizontal from "./Home/CardHorizontal"
@@ -7,29 +7,12 @@ import Brand from "./Home/Brand"
 import { Link } from "react-router-dom"
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
+import { useMediaQuery } from "@mui/material"
 
 const Home = () => {
   const { dados } = useContext(UserContext)
-  const [isMobile, setIsMobile] = useState(false)
 
-  useEffect(() => {
-    // Função para verificar se o dispositivo é um dispositivo móvel
-    const checkIsMobile = () => {
-      const width = window.innerWidth
-      setIsMobile(width <= 768) // Define como móvel se a largura for menor ou igual a 768px
-    }
-
-    // Verifica se o dispositivo é móvel ao carregar a página
-    checkIsMobile()
-
-    // Adiciona um event listener para verificar se o tamanho da tela muda
-    window.addEventListener("resize", checkIsMobile)
-
-    // Remove o event listener ao desmontar o componente
-    return () => {
-      window.removeEventListener("resize", checkIsMobile)
-    }
-  }, [])
+  const isSmallScreen = useMediaQuery("(max-width:600px)")
 
   if (!dados.length) {
     return <Loading />
@@ -38,7 +21,7 @@ const Home = () => {
   return (
     <main className="ml-8 my-10 font-Inter xl:mx-28 md:mx-12 overflow-x-hidden">
       <section className="grid grid-cols-2 justify-center items-center slidein gap-5 md:grid-cols-1">
-        {isMobile ? (
+        {isSmallScreen ? (
           <div className="w-screen pr-14">
             <Swiper spaceBetween={20} slidesPerView={2}>
               {dados.map((item, index) => (
@@ -79,7 +62,7 @@ const Home = () => {
         <h1 className="font-Helvetica text-zinc-200 text-base md:text-lg tracking-widest">
           BROWSE THROUGH PARTNER STORES
         </h1>
-        {isMobile ? (
+        {isSmallScreen ? (
           <div className="w-screen pr-12">
             <Swiper spaceBetween={40} slidesPerView={3}>
               {Array.from({ length: 6 }).map((_, index) => (
