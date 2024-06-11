@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { selectProductsCount } from "../Redux/cart/cart.selector"
 import { useMediaQuery } from "@mui/material"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import HeaderLi from "./HeaderLi"
 import Cart from "./Cart"
 
@@ -14,8 +14,15 @@ const Header = () => {
 
   const handleClickMenu = () => {
     setOpenMenu((prevMenu) => !prevMenu)
-    console.log(openMenu)
   }
+
+  useEffect(() => {
+    if (openMenu) {
+      document.body.classList.add("overflow-hidden")
+    } else {
+      document.body.classList.remove("overflow-hidden")
+    }
+  }, [openMenu])
 
   return (
     <header className="border-b-2 border-zinc-900 w-full relative p-6 sm:py-0 md:px-8  xl:px-16">
@@ -28,7 +35,7 @@ const Header = () => {
             <ul className="flex justify-between lg:justify-center items-center text-sm text">
               <Menu onClick={handleClickMenu} />
               {openMenu && (
-                <div className="absolute z-20 right-0 top-0 h-screen w-screen bg-zinc-900 slidein">
+                <div className="fixed overflow-y-hidden z-20 right-0 top-0 h-screen w-screen bg-zinc-900 slidein">
                   <div className="flex justify-between p-6">
                     <Link to="/" className="font-extrabold">
                       Shopi
