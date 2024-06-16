@@ -14,19 +14,17 @@ const ProductID = () => {
     (produto) => produto.id === parseInt(path)
   )
 
-  console.log(filteredItem)
-
   function handleCartClick(id) {
     dispatch(addProductsToCart(id))
   }
 
   return (
-    <section className="my-10 mx-28">
+    <section className="my-10 mx-10 md:mx-28">
       {filteredItem.map((produto) => (
         <ProductDetails
           key={produto.id}
           produto={produto}
-          onClick={() => handleCartClick(produto)}
+          onClick={() => handleCartClick(produto.id)}
         />
       ))}
     </section>
