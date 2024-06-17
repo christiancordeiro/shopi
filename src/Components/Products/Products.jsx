@@ -1,12 +1,12 @@
 import { useContext, useState } from "react"
 import Input from "./Input"
-
 import UserContext from "../../UserContext"
 import { NavLink, useLocation } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { addProductsToCart } from "../Redux/cart/actions"
 import ProductLink from "./ProductLink"
 import ProductItems from "./ProductItems"
+import { toast } from "sonner"
 
 function Products() {
   const dispatch = useDispatch()
@@ -34,6 +34,7 @@ function Products() {
 
   function handleCartClick(produto) {
     dispatch(addProductsToCart(produto))
+    toast.success("Produto adicionado ao carrinho!")
   }
 
   return (

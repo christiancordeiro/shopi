@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import Button from "../Button"
-import UserContext from "../../UserContext"
 import { useDispatch, useSelector } from "react-redux"
 import {
   removeProductsFromCart,
   increaseProductQuantity,
   decreaseProductQuantity,
 } from "../Redux/cart/actions"
+import { toast } from "sonner"
 
 const OrdemItems = ({ id, title, price, img }) => {
   const dispatch = useDispatch()
@@ -29,6 +29,7 @@ const OrdemItems = ({ id, title, price, img }) => {
 
   function handleRemove() {
     dispatch(removeProductsFromCart(id))
+    toast.error("Produto removido do carrinho!")
   }
 
   return (
