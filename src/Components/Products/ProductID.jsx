@@ -15,8 +15,8 @@ const ProductID = () => {
     (produto) => produto.id === parseInt(path)
   )
 
-  function handleCartClick(id) {
-    dispatch(addProductsToCart(id))
+  function handleCartClick(produto) {
+    dispatch(addProductsToCart(produto))
     toast.success("Produto adicionado ao carrinho!")
   }
 
@@ -26,7 +26,7 @@ const ProductID = () => {
         <ProductDetails
           key={produto.id}
           produto={produto}
-          onClick={() => handleCartClick(produto.id)}
+          onClick={() => handleCartClick(produto)}
         />
       ))}
     </section>
