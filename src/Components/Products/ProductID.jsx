@@ -3,6 +3,7 @@ import UserContext from "../../UserContext"
 import ProductDetails from "./ProductDetails"
 import { useDispatch } from "react-redux"
 import { addProductsToCart } from "../Redux/cart/actions"
+import { toast } from "sonner"
 
 const ProductID = () => {
   const { products } = useContext(UserContext)
@@ -16,6 +17,7 @@ const ProductID = () => {
 
   function handleCartClick(id) {
     dispatch(addProductsToCart(id))
+    toast.success("Produto adicionado ao carrinho!")
   }
 
   return (
