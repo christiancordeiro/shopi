@@ -10,26 +10,34 @@ import Cart from "./Cart"
 const Header = () => {
   const productCount = useSelector(selectProductsCount)
   const isSmallScreen = useMediaQuery("(max-width:640px)")
-  const [openMenu, setOpenMenu] = useState(false)
+  const [isOpenMenu, setIsOpenMenu] = useState(false)
   const [animateMenu, setAnimateMenu] = useState(false)
 
+  const closeMenu = () => {
+    setAnimateMenu(false)
+    setTimeout(() => setIsOpenMenu(false), 800) // Atraso para a animação de saída
+  }
+
   const handleClickMenu = () => {
-    if (openMenu) {
-      setAnimateMenu(false)
-      setTimeout(() => setOpenMenu(false), 800) // Atraso para a animação de saída
+    if (isOpenMenu) {
+      closeMenu()
     } else {
-      setOpenMenu(true)
+      setIsOpenMenu(true)
       setAnimateMenu(true)
     }
   }
 
+  function handleLinkClick() {
+    closeMenu()
+  }
+
   useEffect(() => {
-    if (openMenu) {
+    if (isOpenMenu) {
       document.body.classList.add("overflow-hidden")
     } else {
       document.body.classList.remove("overflow-hidden")
     }
-  }, [openMenu])
+  }, [isOpenMenu])
 
   return (
     <header className="border-b-2 border-zinc-900 w-full relative p-6 sm:py-0 md:px-8  xl:px-16">
@@ -41,7 +49,7 @@ const Header = () => {
           <div className="flex flex-row-reverse sm:flex-row gap-4">
             <ul className="flex justify-between lg:justify-center items-center text-sm text">
               <Menu onClick={handleClickMenu} />
-              {openMenu && (
+              {isOpenMenu && (
                 <div
                   className={`fixed overflow-y-hidden z-20 right-0 top-0 h-screen w-screen bg-zinc-900 ${
                     animateMenu ? "slidein" : "slideout"
@@ -53,7 +61,7 @@ const Header = () => {
                     </Link>
                     <X onClick={handleClickMenu} />
                   </div>
-                  <HeaderLi />
+                  <HeaderLi handleLinkClick={handleLinkClick} />
                 </div>
               )}
             </ul>
