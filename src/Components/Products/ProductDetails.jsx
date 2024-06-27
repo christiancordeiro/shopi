@@ -16,8 +16,7 @@ const ProductDetails = ({ produto, onClick }) => {
           slidesPerView={1}
           navigation
           modules={[Navigation]}
-          centeredSlides={true}
-          className="w-full"
+          className="swiper-container"
         >
           {produto.images.map((image, index) => (
             <SwiperSlide

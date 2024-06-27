@@ -7,12 +7,14 @@ import Brand from "./Home/Brand"
 import { Link } from "react-router-dom"
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
+import "swiper/css/navigation"
+import { Navigation } from "swiper/modules"
 import { useMediaQuery } from "@mui/material"
 
 const Home = () => {
   const { dados } = useContext(UserContext)
 
-  const isSmallScreen = useMediaQuery("(max-width:600px)")
+  const isSmallScreen = useMediaQuery("(max-width:800px)")
 
   if (!dados.length) {
     return <Loading />
@@ -20,10 +22,16 @@ const Home = () => {
 
   return (
     <main className="ml-8 sm:mx-8 my-10 font-Inter xl:mx-28 overflow-x-hidden">
-      <section className="grid grid-cols-2 justify-center items-center slidein gap-5 md:grid-cols-1">
+      <section className="grid grid-cols-1 justify-center items-center slidein gap-5 md:grid-cols-1">
         {isSmallScreen ? (
-          <div className="w-screen pr-14">
-            <Swiper spaceBetween={20} slidesPerView={2}>
+          <div className="flex justify-center items-center w-full pr-8 md:pr-0">
+            <Swiper
+              spaceBetween={10}
+              slidesPerView={1}
+              navigation
+              modules={[Navigation]}
+              className="swiper-container"
+            >
               {dados.map((item, index) => (
                 <SwiperSlide key={index}>
                   <Link to={`/products/${item.name}`}>
@@ -63,7 +71,7 @@ const Home = () => {
           BROWSE THROUGH PARTNER STORES
         </h1>
         {isSmallScreen ? (
-          <div className="w-screen pr-12">
+          <div className="w-full">
             <Swiper spaceBetween={40} slidesPerView={3}>
               {Array.from({ length: 6 }).map((_, index) => (
                 <SwiperSlide key={index}>

@@ -79,3 +79,15 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+:root {
+  --swiper-theme-color: #4f46e5;
+  --swiper-navigation-size: 30px;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
+}
