@@ -13,3 +13,5 @@ Este projeto é um e-commerce fictício desenvolvido com o objetivo de praticar 
 - Detalhes do Produto: Página com informações detalhadas de cada produto.
 - Carrinho de Compras: Adicionar e remover produtos do carrinho.
 - Responsividade: Layout responsivo adaptado para diferentes tamanhos de tela.
+## Links
+URL do site ao vivo: <a href="shopi-eta.vercel.app" target="_blank">Shopi</a>
