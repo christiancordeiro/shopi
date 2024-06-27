@@ -86,7 +86,7 @@ const ProductDetails = ({ produto, onClick }) => {
         </span>
         <div className="mt-5 mb-6 text">
           <h2 className="text-zinc-200 mb-4 font-semibold">{produto?.title}</h2>
-          <h3 className="text-zinc-400 w-[40rem]">{produto?.description}</h3>
+          <h3 className="text-zinc-400 w-[30rem]">{produto?.description}</h3>
         </div>
         <h1 className="text-2xl text-zinc-50 font-semibold mb-7">
           ${produto?.price}
