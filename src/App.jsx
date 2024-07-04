@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Header from "./Components/Header/Header"
-import Home from "./Components/Home"
+import Home from "./Components/Home/Home"
 import Products from "./Components/Products/Products"
 import ProductID from "./Components/Products/ProductID"
 import Orders from "./Components/Orders/Orders"

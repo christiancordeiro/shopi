@@ -1,6 +1,6 @@
 const CardHorizontal = ({ img, name }) => {
   return (
-    <div className="relative  md:w-full font-semibold hover:scale-105 ease-in duration-300">
+    <div className="relative w-full h-full font-semibold hover:scale-105 ease-in duration-300 transform transition-transform">
       <img
         src={img}
         alt="Image category"

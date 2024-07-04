@@ -39,13 +39,13 @@ function Products() {
 
   return (
     <section className="grid my-10 mx-12 xl:mx-28">
-      <div className="flex items-center lg:w-96">
+      <div className="flex items-center lg:w-96 mb-8">
         <Input
           onChange={(e) => setValueInput(e.target.value)}
           value={valueInput}
         />
       </div>
-      <div className="grid grid-cols-1 mt-8 gap-5 slidein md:grid-cols-[1fr_300px]">
+      <div className="grid grid-cols-1 gap-5 slidein md:grid-cols-[1fr_300px]">
         <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 order-2 lg:grid-cols-3 lg:order-1">
           {valueInput.length > 0
             ? filteredItemsInput.map((produto) => (

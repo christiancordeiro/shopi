@@ -1,9 +1,9 @@
 import { useContext } from "react"
-import UserContext from "../UserContext"
-import Loading from "./Helper/Loading"
-import CardHorizontal from "./Home/CardHorizontal"
-import CardVertical from "./Home/CardVertical"
-import Brand from "./Home/Brand"
+import UserContext from "../../UserContext"
+import Loading from "../Helper/Loading"
+import CardHorizontal from "./CardHorizontal"
+import CardVertical from "./CardVertical"
+import Brand from "./Brand"
 import { Link } from "react-router-dom"
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
@@ -21,16 +21,15 @@ const Home = () => {
   }
 
   return (
-    <main className="ml-8 sm:mx-8 my-10 font-Inter xl:mx-28 overflow-x-hidden">
-      <section className="grid grid-cols-1 justify-center items-center slidein gap-5 md:grid-cols-1">
+    <main className="ml-8 my-10 sm:mr-8 font-Inter overflow-x-hidden">
+      <section className="grid pt-3 grid-cols-1 justify-center items-center slidein gap-5 md:grid-cols-1">
         {isSmallScreen ? (
-          <div className="flex justify-center items-center w-full pr-8 md:pr-0">
+          <div className="flex justify-center items-center w-full pr-8 sm:pr-0">
             <Swiper
               spaceBetween={10}
               slidesPerView={1}
               navigation
               modules={[Navigation]}
-              className="swiper-container"
             >
               {dados.map((item, index) => (
                 <SwiperSlide key={index}>
@@ -72,7 +71,7 @@ const Home = () => {
         </h1>
         {isSmallScreen ? (
           <div className="w-full">
-            <Swiper spaceBetween={40} slidesPerView={3}>
+            <Swiper spaceBetween={-30} slidesPerView={3}>
               {Array.from({ length: 6 }).map((_, index) => (
                 <SwiperSlide key={index}>
                   <Brand />
@@ -82,7 +81,7 @@ const Home = () => {
           </div>
         ) : (
           <div className="flex justify-center gap-4 md:gap-12">
-            {Array.from({ length: 5 }).map((_, index) => (
+            {Array.from({ length: 6 }).map((_, index) => (
               <Brand key={index} />
             ))}
           </div>
